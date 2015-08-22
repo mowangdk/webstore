@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+		<!-- 指定由spring负责action对象的创建 -->
+		<constant name="struts.objectFactory" value="spring"></constant>
+		<constant name="struts.devMode" value="true"></constant>
+		<constant name="struts.action.extension" value="action,do"></constant>
+		<constant name="struts.configuration.xml.reload" value="true"></constant> 
+		<constant name="st ruts.i18n.encoding" value="utf-8"></constant>
+		<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+		<package name="basePackage" namespace="/getPage" extends="struts-default">
+			<action name="getIndex">
+				<result>/WEB-INF/jsp/index.jsp</result>
+			</action>
+			<action name="getRegist">
+				<result>/WEB-INF/jsp/regist.jsp</result>
+			</action>
+			<action name="getLogin">
+				<result>/WEB-INF/jsp/login.jsp</result>
+			</action>
+			<action name="findByName" class="gyq.shop.user.action.UserAction" method="findByName">
+			</action>
+		</package>
+		
+		
+		<package name="userpackage" namespace="/user" extends="struts-default">
+			<action name="regist" class="gyq.shop.user.action.UserAction" method="regist">
+				<result name="input">/WEB-INF/jsp/regist.jsp</result>
+				<result name="SUCCESS">/WEB-INF/jsp/success.jsp</result>
+			</action> 
+			<action name="active" class="gyq.shop.user.action.UserAction" method="active">
+				<result name="success">/WEB-INF/jsp/login.jsp</result>
+			</action>
+			<action name="login" class="gyq.shop.user.action.UserAction" method="login">
+				<result name="success">/WEB-INF/jsp/index.jsp</result>
+				<result name="login">/WEB-INF/jsp/login.jsp</result>
+				<result name="checkcodefailure">/WEB-INF/jsp/login.jsp</result>
+			</action>
+			<action name="logout" class="gyq.shop.user.action.UserAction" method="logout">
+				<result name="success">/WEB-INF/jsp/index.jsp</result>
+			</action>
+			<action name="checkImg" class="gyq.shop.user.action.CheckimgAction" method="execute">
+			</action>
+		</package>
+</struts>
